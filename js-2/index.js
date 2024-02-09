@@ -1,0 +1,1 @@
+let someScript = [1,2,3];
