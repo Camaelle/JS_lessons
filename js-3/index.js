@@ -117,16 +117,16 @@
 // }
 // alert(num);
 
-let result ='';
-const length = 7;
+// let result ='';
+// const length = 7;
 
-for(let i = 1; i<length; i++){
-    for(let j = 0; j<i; j++){
-        result += '*';
-    }
-    result += '\n';
-}
-console.log(result);
+// for(let i = 1; i<length; i++){
+//     for(let j = 0; j<i; j++){
+//         result += '*';
+//     }
+//     result += '\n';
+// }
+// console.log(result);
 
 // *
 // **
@@ -140,75 +140,88 @@ console.log(result);
 
 // При помощи цикла выведите числа от 5 до 10 в консоль. 5 и 10 включительно. Цикл можно использовать любой
 // Место для первой задачи
-function firstTask() {
-    // Пишем решение вот тут
-    for(let i = 5; i<=10; i++){
-      console.log(i);
-    }
+// function firstTask() {
+//     // Пишем решение вот тут
+//     for(let i = 5; i<=10; i++){
+//       console.log(i);
+//     }
     
-}
-firstTask();
+// }
+// firstTask();
 
 // При помощи цикла for вывести числа от 20 до 10 в консоль. В обратном порядке (20, 19, 18...). Когда цикл дойдет до числа 13 - остановить весь цикл
 // Место для второй задачи
-function secondTask() {
-    // Пишем решение вот тут
-    for(let i = 20; i >= 13; i--){
-        if(i === 13){
-            break;
-        }
-        console.log(i);
-    }
-}
-secondTask();
+// function secondTask() {
+//     // Пишем решение вот тут
+//     for(let i = 20; i >= 10; i--){
+//         if(i === 13){
+//             break;
+//         }
+//         console.log(i);
+//     }
+// }
+// secondTask();
 
 // При помощи цикла for выведите чётные числа от 2 до 10 включительно
 // Место для третьей задачи
-function thirdTask() {
-    // Пишем решение вот тут
-    for(let i = 1; i<=10; i++){
-        if(i%2 === 0){
-            console.log(i);
-        };
-    }
+// function thirdTask() {
+//     // Пишем решение вот тут
+//     for(let i = 1; i<=10; i++){
+//         if(i%2 === 0){
+//             console.log(i);
+//         };
+//     }
     
-}
-thirdTask();
+// }
+// thirdTask();
 
 // Перепишите цикл  for на вариант с while. Результат должен остаться точно таким же. Не создайте бесконечный цикл! Иначе браузер может зависнуть.
 // Место для четвертой задачи
 // Цикл, который нужно переписать:
 
-for (let i = 2; i <= 16; i++) {
-    if (i % 2 === 0) {
-        continue;
-    } else {
-        console.log(i);
-    }
-}
+// for (let i = 2; i <= 16; i++) {
+//     if (i % 2 === 0) {
+//         continue;
+//     } else {
+//         console.log(i);
+//     }
+// }
 
-function fourthTask() {
-    // Пишем решение вот тут
-    let i = 0;
-    while(i<=16){
-        if(i%2===0){
-            continue;
-        } else {
-            console.log(i);
-        }
-        i++;
-    }
+// function fourthTask() {
+//     // Пишем решение вот тут
+//     let i = 2;
+//     while(i<=16){
+//         if(i%2===0){
+//             i++;
+//             continue;
+//         } else {
+//             console.log(i);
+//         }
+//         i++;
+//     }
     
-}
-fourthTask();
+// }
+// fourthTask();
+
 // Место для пятой задачи
+// function fifthTask() {
+//     const arrayOfNumbers = [];
+
+//     // Пишем решение вот тут
+//     for (let i = 5; i = 10; i++){
+//         arrayOfNumbers.push([i]);
+//     }
+//     // Не трогаем
+//     return arrayOfNumbers;
+// }
+// fifthTask();
 
 function fifthTask() {
     const arrayOfNumbers = [];
-
-    // Пишем решение вот тут
-    
-    
-    // Не трогаем
+    for (let i = 5; i < 11; i++){
+        arrayOfNumbers[i - 5] = i;
+    }
+    console.log(arrayOfNumbers);
     return arrayOfNumbers;
 }
+fifthTask();
