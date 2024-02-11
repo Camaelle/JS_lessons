@@ -216,12 +216,96 @@
 // }
 // fifthTask();
 
-function fifthTask() {
-    const arrayOfNumbers = [];
-    for (let i = 5; i < 11; i++){
-        arrayOfNumbers[i - 5] = i;
+// function fifthTask() {
+//     const arrayOfNumbers = [];
+//     for (let i = 5; i < 11; i++){
+//         arrayOfNumbers[i - 5] = i;
+//     }
+//     console.log(arrayOfNumbers);
+//     return arrayOfNumbers;
+// }
+// fifthTask();
+
+/* 6. Заполните новый массив (result) числами из старого (arr). 
+Количество элементов в массиве можно получить как arr.length, а к элементам обращаемся все так же: arr[0], arr[1] и тд.
+Должен получиться точно такой же массив 
+
+7. Измените данный массив так, чтобы все числа были увеличены в 2 раза, а если попадается строка строка - то к ней было добавлено " - done".
+Для определения типа данных используйте typeof();
+Должно получиться: [ 10, 20, 'Shopping - done', 40, 'Homework - done' ]
+
+8. Разверните массив data наоборот при помощи цикла и запишите данные в массив result.
+Должно получиться: [ 'Homework', 20, 'Shopping', 10, 5 ]*/
+
+// 6. Место для шестой задачи
+// function firstTask() {
+//     // Значения массива менять нельзя, тут он проверяется автоматически именно на эти значения
+//     const arr = [3, 5, 8, 16, 20, 23, 50];
+//     const result = [];
+
+//     for(let i = 0; i < arr.length; i++){
+//         result[i] = arr[i];
+//     }
+//     console.log(result);
+//     return result;
+// }
+// firstTask();
+
+// 7. Место для второй задачи
+// function secondTask() {
+//     const data = [5, 10, 'Shopping', 20, 'Homework'];
+//     for(let k = 0; k < data.length; k++){
+//         if(typeof(data[k]) === "number"){
+//             data[k] = data[k] * 2;
+//         } else if(typeof(data[k]) === "string"){
+//             data[k] = data[k] + ' - Done';
+//         } else{
+//             console.log("some error");
+//         }
+//     }
+//     console.log(data);
+//     return data;
+// }
+// secondTask();
+
+// Место для третьей задачи
+// function thirdTask() {
+   
+//     const data = [5, 10, 'Shopping', 20, 'Homework'];
+//     const result = [];
+
+//     for(let i = 0; i< data.length; i++){
+//         result[data.length - 1 - i] = data[i];
+//     }
+//     console.log(result);
+//     return result;
+// }
+// thirdTask();
+
+
+
+/* Необходимо написать код, который при помощи звездочек (*) в консоли нарисует вот такую фигуру:
+
+     *
+    ***
+   *****
+  *******
+ *********
+***********
+*/
+
+
+const lines = 5;
+let result = '';
+// Проверяется именно переменная result, формируйте строку в ней
+for(let i = 0; i<=lines; i++){
+    for(let n = 0; n<lines - i; n++){
+        result += ' ';
     }
-    console.log(arrayOfNumbers);
-    return arrayOfNumbers;
+    for(let j = 0; j< 2 * i + 1; j++){
+        
+        result += '*';
+    }
+    result += '\n';
 }
-fifthTask();
+console.log(result);
