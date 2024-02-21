@@ -89,3 +89,149 @@ function getCoupeNumber(n) {
     }
 }
 console.log(getCoupeNumber(3.3));
+
+
+/* 
+    1) Создайте функцию, которая принимает в себя целое число минут и возвращает время в нужном формате строки. (Смотри пример). 
+    Обратите внимание на окончание слова "час" - оно меняется в зависимости от цифры. Если вместо аргумента приходит не число, 
+    дробное или отрицательное число - функция возвращает строку "Ошибка, проверьте данные"
+
+    Внимание! Давайте пока ограничимся максимум 600ю минутами (10 часов). Так как проверки на большие числа будут
+    раздувать код (33 часа, 31 час, 11 часов и тд). Этого будет достаточно и код будет проверять именно этот промежуток
+    (1 - 10 часов). Но вы можете реализовать и полный скрипт, он тоже должен проходить тесты.
+
+    Пример:
+
+    getTimeFromMinutes(150) => "Это 2 часа и 30 минут"
+
+    getTimeFromMinutes(50) => "Это 0 часов и 50 минут"
+
+    getTimeFromMinutes(0) => "Это 0 часов и 0 минут"
+
+    getTimeFromMinutes(-150) => "Ошибка, проверьте данные" 
+*/
+
+//Место для первой задачи
+function getTimeFromMinutes(time) {
+    if(typeof time !== 'number' || time < 0 || time > 600){
+        return 'Ошибка, проверьте данные';
+    }
+
+    let hours = Math.floor(time / 60);
+    let remainingMinutes = time % 60;
+
+    let timeMessage;
+    switch(hours % 10){
+        case 1: timeMessage = 'час';
+        break;
+        case 2:
+        case 3:
+        case 4:
+            timeMessage = 'часа';
+            break;
+        default:
+            timeMessage = 'часов';
+    }
+    return `Это ${hours} ${timeMessage} и ${remainingMinutes} минут`;
+}
+console.log(getTimeFromMinutes(83));
+
+
+/*
+    2) Напишите функцию, которая принимает в себя 4 числа и возвращает самое большее из них.
+    Если один из аргументов не является числом или их меньше 4 - возвращается 0. Дробные числа разрешены.
+
+    Пример:
+
+    findMaxNumber(1, 5, 6.6, 11); =>  11
+
+    findMaxNumber(1, 5, '6', '10');  =>  0
+*/
+
+// Место для второй задачи
+function findMaxNumber(num1, num2, num3, num4) {
+    let res = Math.max(num1, num2, num3, num4);
+    if(num1 < 4 || num2 < 4 || num3 < 4 || num4 < 4){
+        return res = 0;
+    }
+    return res;
+}
+console.log(findMaxNumber(61,5.5,7.5,4));
+
+
+/*
+    Создайте функцию, которая будет принимать в себя один аргумент-целое положительное число. 
+    Она должна возвращать строку, в которой будут через пробел выведены числа Фибоначчи. 
+    Причем, их количество должно быть равно переданному аргументу. 
+
+    Если переданный аргумент не число - вернуть пустую строку. Решать без применения рекурсии.
+
+    Пример:
+
+    fib(4) => "0 1 1 2"
+
+    fib(7) => "0 1 1 2 3 5 8"
+
+    fib('7') => ""
+
+    fib(1) => "0"
+
+    fib(0) => ""
+    Fn = Fn-1 + Fn-2
+*/
+
+let fibNumber = [0, 1];
+function fib(number) {
+    if(number === 0 || typeof number !== 'number'){
+        return "";
+    } else if (number === 1){
+        return "0";
+    } else{
+        for( let i = 2; i<number; i++){
+            fibNumber[i] = fibNumber[i-1] + fibNumber[i-2];
+        }
+        return fibNumber.slice(0, number).join(" ");
+    }
+    
+}
+console.log(fib(7));
+
+
+
+function fib(n) {
+    if (typeof n !== 'number' || n <   1) {
+      return "";
+    }
+
+    let prev =   0;
+    let current =   1;
+    let result = "0";
+  
+    for (let i =  0; i < n; i++) {
+      let temp = current;
+      current = prev + current;
+      prev = temp;
+
+      if (i < n -  1) {
+        result += " " + current;
+      }
+    }
+  
+    if (n >   1) {
+      result += " " + current;
+    }
+  
+    return result;
+  }
+
+
+  console.log(fib(1)); // "0"
+  console.log(fib(2)); // "0  1"
+  console.log(fib(3)); // "0  1  1"
+  console.log(fib(4)); // "0  1  1  2"
+  console.log(fib(5)); // "0  1  1  2  3"
+  console.log(fib(6)); // "0  1  1  2  3  5"
+  console.log(fib(7)); // "0  1  1  2  3  5  8"
+  console.log(fib('7')); // ""
+  console.log(fib(1)); // "0"
+  console.log(fib(0)); // ""
