@@ -134,6 +134,59 @@ isBudgetEnough(shoppingMallData);
 
 const students = ['Peter', 'Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Takesi', 'Sam'];
 
-function sortStudentsByGroups(arr) {
+// function sortStudentsByGroups(arr) {
+//     // Сортуємо імена за алфавітом
+//     students.sort();
 
+//     // Розподіляємо студентів по 3 в групи
+//     const groups = [];
+//     for (let i = 0; i < students.length; i += 3) {
+//         groups.push(students.slice(i, i + 3));
+        
+//         // Створюємо рядок з залишком
+//         const remainder = groups.length === 3 ? 'Оставшиеся студенты: -' : `Оставшиеся студенты: ${groups[groups.length - 1].slice(3).join(', ')}`;
+//         // Додаємо рядок з залишком до кінця масиву
+//         groups.push(remainder);
+//     }
+
+
+//     return groups;
+// }
+// console.log(sortStudentsByGroups(students));
+
+
+
+// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// const [evenNumbers, oddNumbers] = numbers.reduce(
+//   (acc, val) => {
+//     acc[val % 2].push(val);
+//     return acc;
+//   },
+//   [[], []]
+// );
+
+// console.log(evenNumbers); // [2, 4, 6, 8]
+// console.log(oddNumbers); // [1, 3, 5, 7, 9]
+
+
+
+function sortStudentsByGroups(students) {
+    students.sort();
+    const result = students.reduce((acc, student, index) => {
+        const groupIndex = Math.floor(index / 3);
+        if (!acc[groupIndex]) {
+            acc[groupIndex] = [];
+        }
+        acc[groupIndex].push(student);
+        return acc;
+    }, []);
+
+    const remainder = result.slice(-1)[0] || [];
+    result.pop(); // Видаляємо останню групу, яка може бути неповною
+
+    result.push(`Оставшиеся студенты: ${remainder.join(', ')}`);
+    return result;
 }
+
+console.log(sortStudentsByGroups(students));
+
