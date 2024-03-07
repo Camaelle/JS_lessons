@@ -56,9 +56,23 @@ console.log(isAverageLunchPriceTrue(restorantData.menu[0], restorantData.menu[1]
 
 function transferWaitors(data) {
     const copy = Object.assign([], data.waitors);
-    copy[0] = {name: 'Mike', age: 32};
+    copy[0].name = 'Test';
+    // copy[0] = {name: 'Mike', age: 32};
 
     return copy;
 }
 
-transferWaitors(restorantData);
+console.log(transferWaitors(restorantData));
+console.log(restorantData.waitors);
+
+
+// function transferWaitors(data) {
+//     const copy = Object.assign({}, data);
+
+//     // Нам просто нужно менять весь массив данных,
+//     // а не лезть напрямую менять каждого из сотрудников
+//     // Так как это верхний уровень объекта, то значение 
+//     // будет меняться только у копии
+//     copy.waitors = [{name: 'Mike', age: 32}];
+//     return copy;
+// }
