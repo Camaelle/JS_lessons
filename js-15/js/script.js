@@ -49,6 +49,7 @@ const movieDB = {
         `;
     });
     
+    
     // 4-5)
     // movieList2.forEach((item, index)=>{
     //     item.innerHTML = `${index + 1}) ${movieDB.movies[index]} <div class="delete"></div>`;
