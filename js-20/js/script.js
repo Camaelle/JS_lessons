@@ -32,19 +32,20 @@ const movieDB = {
             genre = document.querySelector('.promo__genre'),
             poster = document.querySelector('.promo__bg'),
             movieList = document.querySelector('.promo__interactive-list'),
-            movieList2 = document.querySelectorAll('.promo__interactive-item'),
             form = document.querySelector('.add'),
-            inputCheck = form.querySelector('[type = "checkbox"]'),
+            inputCheck = form.querySelector('input[type = checkbox]'),
             buttonAprove = form.querySelector('button');
 
     buttonAprove.addEventListener('click', (e)=> {
         e.preventDefault();
         const inputAdd = form.querySelector('.adding__input').value;
         const movieTitle = inputAdd.length > 21 ? inputAdd.substring(0, 21) + '...' : inputAdd;
-      
+        if(inputCheck.checked){
+            console.log("Добавляем любимый фильм");
+        }
         movieDB.movies.push(movieTitle);
         
-        console.log(movieDB);
+        movieLoad(movieDB.movies);
     });
     adv.forEach(item =>{
         item.remove();
@@ -54,31 +55,50 @@ const movieDB = {
 
     poster.style.backgroundImage = 'url("img/bg.jpg")';
 
-    movieList.innerHTML = '';
-    movieDB.movies.sort();
-    // 4-5)
-    movieDB.movies.forEach((film, i) => {
-        movieList.innerHTML += `
-            <li class="promo__interactive-item">${i + 1}) ${film}
-                <div class="delete"></div>
-            </li>
-        `;
-    });
+    function removeMovie(movieTitle){
+        movieDB.movies = movieDB.movies.filter(movie => movie !== movieTitle);
+        movieLoad(movieDB.movies);
+    }
+
+    // function movieLoad(data){
+    //     movieList.innerHTML = '';
+
+    //     data.sort();
+
+    //     data.forEach((film, i) => {
+    //         const listItem = document.createElement('li');
+    //         listItem.className = 'promo__interactive-item';
+    //         listItem.textContent = `${i + 1}) ${film}`;
     
-   
+    //         const deleteButton = document.createElement('div');
+    //         deleteButton.className = 'delete';
+    //         deleteButton.addEventListener('click', function() {
+    //             removeMovie(film); // Викликаємо функцію видалення
+    //         });
+    
+    //         listItem.appendChild(deleteButton);
+    //         movieList.appendChild(listItem);
+    //     });
+    // }
 
-    // 4-5)
-    // movieList2.forEach((item, index)=>{
-    //     item.innerHTML = `${index + 1}) ${movieDB.movies[index]} <div class="delete"></div>`;
-    // })
-/*
+    function movieLoad(data){
+        movieList.innerHTML = '';
 
-    // 1)
-    document.querySelector('.promo__adv').remove();
-    // 2)
-    let genre = document.querySelector('.promo__genre');
-    genre.textContent = 'драма'.toUpperCase();
-    // 3)
-    let backgroundImage = document.querySelector('.promo__bg');
-    backgroundImage.style.cssText = 'background: url(./img/bg.jpg) center center / cover no-repeat;'
-*/
+        data.sort();
+
+        data.forEach((film, i) => {
+            movieList.innerHTML += `
+                <li class="promo__interactive-item">${i + 1}) ${film}
+                    <div class="delete"></div>
+                </li>
+            `;
+
+            movieList.querySelectorAll('.delete').forEach(btn =>{
+                btn.addEventListener('click', (e) => {
+                  e.currentTarget( removeMovie(film));
+                })
+            })
+        });
+
+    }
+    movieLoad(movieDB.movies);
