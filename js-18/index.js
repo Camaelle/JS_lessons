@@ -105,3 +105,36 @@ function getTotalProgressByRecursion(data) {
 
 const result = getTotalProgressByRecursion(students);
 console.log(result[0]/result[1]);
+
+function lessRecursion(){
+    let count = 0;
+
+    function recurse(){
+        if(count === 5) return 'Done';
+
+        count++;
+        return recurse();
+    }
+
+    console.log(recurse());
+    console.log('count =' , count);
+
+
+    //Math.pow(5, 3)
+    function pow(x, y){
+        if(y === 0 ) return 1;
+
+        return x * pow(x, y -1);
+    }
+
+    let result =     pow(5, 3);
+    console.log(result);
+
+    // function sumOjDigits(number){
+
+    // }
+    // sumOjDigits(100)
+
+    
+}
+lessRecursion();
