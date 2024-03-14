@@ -107,34 +107,68 @@ const result = getTotalProgressByRecursion(students);
 console.log(result[0]/result[1]);
 
 function lessRecursion(){
-    let count = 0;
+    // let count = 0;
 
-    function recurse(){
-        if(count === 5) return 'Done';
+    // function recurse(){
+    //     if(count === 5) return 'Done';
 
-        count++;
-        return recurse();
-    }
+    //     count++;
+    //     return recurse();
+    // }
 
-    console.log(recurse());
-    console.log('count =' , count);
+    // console.log(recurse());
+    // console.log('count =' , count);
 
 
-    //Math.pow(5, 3)
-    function pow(x, y){
-        if(y === 0 ) return 1;
+    // //Math.pow(5, 3)
+    // function pow(x, y){
+    //     if(y === 0 ) return 1;
 
-        return x * pow(x, y -1);
-    }
+    //     return x * pow(x, y -1);
+    // }
 
-    let result =     pow(5, 3);
-    console.log(result);
+    // let result =     pow(5, 3);
+    // console.log(result);
 
     // function sumOjDigits(number){
 
     // }
     // sumOjDigits(100)
 
-    
+    // offset
+    // let offset = 0;
+
+    // function move(){
+    //     offset += 5;
+    //     document.querySelector('.test').style.left = offset + 'px';
+    //     if (offset > 300) {
+    //         return true;
+    //     }
+    //     setTimeout(move, 500);
+    // }
+
+    //1! = 1
+    //2! = 1 * 2 = 2
+    //3! = 1 * 2 * 3 = 6
+    //4! = 1 * 2 * 3 * 4 = 24
+    function factorial(n){
+        if ( n < 0) console.log('factorial вызван с неверным значением n');
+        if (n === 0) return 1;
+
+        return n * factorial( n - 1);
+    }
+    console.log(factorial(4));
+
+    // factorial(4) = 4 * factorial(3);
+    // factorial(3) = 3 * factorial(2);
+    // factorial(2) = 2 * factorial(1);
+    // factorial(1) = 1 * factorial(0);
+    // factorial(0) = 1; 
+
+    // factorial(0) = 1;
+    // factorial(1) = 1 * 1 = 1;
+    // factorial(2) = 1 * 2 = 2;
+    // factorial(3) = 2 * 3 = 6;
+    // factorial(4) = 6 * 4 = 24;    
 }
 lessRecursion();
