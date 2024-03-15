@@ -157,6 +157,9 @@ function lessRecursion(){
 
         return n * factorial( n - 1);
     }
+    function factorial(n){
+        return n <= 0 ? 1: factorial( n - 1 );
+    }
     console.log(factorial(4));
 
     // factorial(4) = 4 * factorial(3);
@@ -169,6 +172,46 @@ function lessRecursion(){
     // factorial(1) = 1 * 1 = 1;
     // factorial(2) = 1 * 2 = 2;
     // factorial(3) = 2 * 3 = 6;
-    // factorial(4) = 6 * 4 = 24;    
+    // factorial(4) = 6 * 4 = 24;
+
+
+
+    // fibonacci(0) = 0
+    // fibonacci(1) = 1
+    // fibonacci(n) = fibonacci(n - 1) + fibonacci(n - 2), n
+
+    function fibonacci(n){
+        if( n <= 1 ) return n;
+        return fibonacci(n -1) + fibonacci(n - 2);
+    }
+    console.log(fibonacci(6));
+
+    // function flatten(...data){
+    //     const result = [];
+    //     for( let i = 0; i < data.length; i++){
+    //         const currentEl = data[i];
+    //         if (Array.isArray(currentEl)){
+    //             result.push(...flatten(...currentEl));
+    //         } else{
+    //             result.push(currentEl);
+    //         }
+    //     }
+
+    //     return result;
+    // }
+
+    // flatten(1, [2, [[3]]], 4, 5, [6, [7]]) = [1, 2, 3, 4, 5, 6, 7];
+    // flatten(2, [[3]]) = [2, 3]
+    // flatten([3]) = [3]
+    // flatten(3) = [3]
+
+    function flatten(...data){
+        return data.reduce((acc, item) => (
+            Array.isArray(item) ? acc.concat(flatten(...item)) : acc.concat(item)
+        ), []);
+    }
+
+    console.log(flatten(1, [2, [[3]]], 4, 5, [6, [7]]));
+    console.log(flatten('a', ['b', 2], 3, null, [[4], ['c']]));
 }
 lessRecursion();
