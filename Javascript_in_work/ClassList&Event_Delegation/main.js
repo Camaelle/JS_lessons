@@ -1,6 +1,6 @@
 const btns = document.querySelectorAll('button'),
         wrapper = document.querySelector('.btn-block');
-
+console.log(btns);
 // console.log(btns[0].classList.length);
 // console.log(btns[0].classList.item(1));
 // console.log(btns[1].classList.add('red'));
