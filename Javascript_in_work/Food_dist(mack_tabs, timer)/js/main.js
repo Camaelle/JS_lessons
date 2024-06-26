@@ -61,13 +61,21 @@ window.addEventListener('DOMContentLoaded', () => {
     const deadline = '2024-06-29';
 
     function getTimeRemaining(endtime){
-        const t = Date.parse(endtime) - Date.parse(new Date()),
-              days = Math.floor(t / (1000 * 60 * 60 * 24)), 
-              hours = Math.floor((t / (1000 * 60 * 60) % 24)), 
-              minutes = Math.floor((t / 1000 / 60) % 60),
-              seconds = Math.floor((t / 1000) % 60);
+        let days, hours, minutes, seconds;
+        const t = Date.parse(endtime) - Date.parse(new Date());
 
-            //   console.log(`Days: ${days}, Hours: ${hours}, Minutes: ${minutes}, Seconds: ${seconds}, T: ${t}`);
+        if(t <= 0){
+            days = 0,
+            hours = 0,
+            minutes = 0,
+            seconds = 0;
+        } else{
+            days = Math.floor(t / (1000 * 60 * 60 * 24)), 
+            hours = Math.floor((t / (1000 * 60 * 60) % 24)), 
+            minutes = Math.floor((t / 1000 / 60) % 60),
+            seconds = Math.floor((t / 1000) % 60);
+        }
+        // console.log(`Days: ${days}, Hours: ${hours}, Minutes: ${minutes}, Seconds: ${seconds}, T: ${t}`);
 
         // return {
         //     'total': t,
@@ -81,7 +89,7 @@ window.addEventListener('DOMContentLoaded', () => {
         return TimeRemaining;
     }
 
-    // getTimeRemaining(deadline);
+    // console.log(getTimeRemaining(deadline));
 
     function getZero(num){
         if(num >= 0 && num < 10){
@@ -117,7 +125,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 clearInterval(timeInterval);
             }
         }
-
     }
 
     setClock('.timer', deadline);
