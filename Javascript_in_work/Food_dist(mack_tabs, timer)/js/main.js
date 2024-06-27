@@ -128,4 +128,54 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     setClock('.timer', deadline);
+
+    // Modal
+
+    const modalBtn = document.querySelectorAll('[data-modal]');
+    const closeBtn = document.querySelector('[data-close]');
+    const modal = document.querySelector('.modal');
+    
+    function openModal(){
+        modal.classList.add('show');
+        modal.classList.remove('hide');
+        document.documentElement.style.overflow = 'hidden';
+        clearTimeout(openModalTimeout);
+    }
+
+    function closeModal(){
+        modal.classList.add('hide');
+        modal.classList.remove('show');
+        document.documentElement.style.overflow = '';
+    }
+
+    modalBtn.forEach( btn => {
+        btn.addEventListener('click', openModal);
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (event) =>{
+        if(event.target === modal){
+            closeModal();
+        }
+    });
+
+    document.addEventListener('keydown', (event) =>{
+        if(event.code === 'Escape' && modal.classList.contains('show')){
+            closeModal();
+        }
+    });
+
+    const openModalTimeout = setTimeout(openModal, 10000);
+
+    function showModalByScroll() {
+        // indow.pageYOffset == window.scrollY всегда верно
+        // Для кросс-браузерной совместимости используйте window.pageYOffset вместо window.scrollY. Кроме того, старые версии Internet Explorer (<9) не поддерживают оба свойства. Для работы в Internet Explorer необходимо использовать нестандарные свойства.
+        if(window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight -1){
+            openModal();
+            window.removeEventListener('scroll', showModalByScroll);
+        }
+    }
+
+    window.addEventListener('scroll', showModalByScroll);
 });
