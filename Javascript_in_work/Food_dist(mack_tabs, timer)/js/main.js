@@ -58,7 +58,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Timer
 
-    const deadline = '2024-06-29';
+    const deadline = '2024-08-17';
 
     function getTimeRemaining(endtime){
         let days, hours, minutes, seconds;
