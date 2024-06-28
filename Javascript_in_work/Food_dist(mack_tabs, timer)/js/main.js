@@ -139,7 +139,7 @@ window.addEventListener('DOMContentLoaded', () => {
         modal.classList.add('show');
         modal.classList.remove('hide');
         document.documentElement.style.overflow = 'hidden';
-        clearTimeout(openModalTimeout);
+        // clearTimeout(openModalTimeout);
     }
 
     function closeModal(){
@@ -166,7 +166,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const openModalTimeout = setTimeout(openModal, 10000);
+    // const openModalTimeout = setTimeout(openModal, 10000);
 
     function showModalByScroll() {
         // indow.pageYOffset == window.scrollY всегда верно
@@ -178,4 +178,155 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     window.addEventListener('scroll', showModalByScroll);
+
+
+    // Using Class constructor for cards
+
+    class MenuCards {
+        constructor(src, alt, title, desc, price, parent){
+            this.src = src;
+            this.alt = alt;
+            this.title = title;
+            this.desc = desc;
+            this.price = price;
+            this.parent = document.querySelector(parent);
+            this.transfer = 40.5;
+            this.convertToUah();
+        }
+
+        convertToUah(){
+            this.price = Math.floor(this.price * this.transfer);
+        }
+
+        draw(){
+            const div = document.createElement('div');
+            div.classList.add('menu__item');
+            div.innerHTML = `
+                <img src="${this.src}" alt="${this.alt}">
+                <h3 class="menu__item-subtitle">${this.title}</h3>
+                <div class="menu__item-descr">${this.desc}</div>
+                <div class="menu__item-divider"></div>
+                <div class="menu__item-price">
+                    <div class="menu__item-cost">Цена:</div>
+                    <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
+                </div>
+            `;
+
+            this.parent.append(div);
+        }
+    }
+
+    // const card1 = new MenuCards(
+    //     'img/tabs/vegy.jpg',
+    //     'vegy',
+    //     'Меню "Фитнес"',
+    //     'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+    //     9,
+    //     '.menu__field .container'
+    // );
+
+    // const card2 = new MenuCards(
+    //     'img/tabs/elite.jpg',
+    //     'elite',
+    //     'Меню “Премиум”',
+    //     'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
+    //     14,
+    //     '.menu__field .container'
+    // );
+
+    // const card3 = new MenuCards(
+    //     'img/tabs/post.jpg',
+    //     'post',
+    //     'Меню "Постное"',
+    //     'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
+    //     21,
+    //     '.menu__field .container'
+    // );
+
+    // card1.draw();
+    // card2.draw();
+    // card3.draw();
+
+    // new MenuCards(
+    //     'img/tabs/vegy.jpg',
+    //     'vegy',
+    //     'Меню "Фитнес"',
+    //     'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+    //     9,
+    //     '.menu .container'
+    // ).draw();
+
+    // new MenuCards(
+    //     'img/tabs/post.jpg',
+    //     'post',
+    //     'Меню "Постное"',
+    //     'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
+    //     14,
+    //     '.menu .container'
+    // ).draw();
+
+    // new MenuCards(
+    //     'img/tabs/elite.jpg',
+    //     'elite',
+    //     'Меню “Премиум”',
+    //     'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
+    //     21,
+    //     '.menu .container'
+    // ).draw();
+
+    const cardsData = [
+        {
+            src: 'img/tabs/vegy.jpg',
+            alt: 'vegy',
+            title: 'Меню "Фитнес"',
+            desc: 'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+            price: 9,
+            parentSelector: '.menu__field .container'
+        },
+        {
+            src: 'img/tabs/elite.jpg',
+            alt: 'elite',
+            title: 'Меню “Премиум”',
+            desc: 'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
+            price: 14,
+            parentSelector: '.menu__field .container'
+        },
+        {
+            src: 'img/tabs/post.jpg',
+            alt: 'post',
+            title: 'Меню "Постное"',
+            desc: 'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
+            price: 21,
+            parentSelector: '.menu__field .container'
+        }
+    ];
+
+    cardsData.forEach(({src, alt, title, desc, price, parentSelector}) =>{
+        new MenuCards(src, alt, title, desc, price, parentSelector).draw();
+    });
+
+    // Функция для получения данных с бэкенда
+    // async function getCardsData(url) {
+    //     try {
+    //         const response = await fetch(url);
+    //         if (!response.ok) {
+    //             throw new Error(`Ошибка HTTP: ${response.status}`);
+    //         }
+    //         const data = await response.json();
+    //         return data;
+    //     } catch (error) {
+    //         console.error('Ошибка при получении данных:', error);
+    //         return [];
+    //     }
+    // }
+
+    // URL вашего API
+    // const apiURL = 'https://example.com/api/cards';
+
+    // Получаем данные и создаем карточки
+    // getCardsData(apiURL).then(cardsData => {
+    //     cardsData.forEach(({ src, alt, title, desc, price, parentSelector }) => {
+    //         new MenuCards(src, alt, title, desc, price, parentSelector).render();
+    //     });
+    // });
 });
