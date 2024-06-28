@@ -182,39 +182,47 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Using Class constructor for cards
 
-    class MenuCards {
-        constructor(src, alt, title, desc, price, parent){
-            this.src = src;
-            this.alt = alt;
-            this.title = title;
-            this.desc = desc;
-            this.price = price;
-            this.parent = document.querySelector(parent);
-            this.transfer = 40.5;
-            this.convertToUah();
-        }
+    // class MenuCards {
+    //     constructor(src, alt, title, desc, price, parent, ...classes){
+    //         this.src = src;
+    //         this.alt = alt;
+    //         this.title = title;
+    //         this.desc = desc;
+    //         this.price = price;
+    //         this.parent = document.querySelector(parent);
+    //         this.classes = classes;
+    //         this.transfer = 40.5;
+    //         this.convertToUah();
+    //     }
 
-        convertToUah(){
-            this.price = Math.floor(this.price * this.transfer);
-        }
+    //     convertToUah(){
+    //         this.price = Math.floor(this.price * this.transfer);
+    //     }
 
-        draw(){
-            const div = document.createElement('div');
-            div.classList.add('menu__item');
-            div.innerHTML = `
-                <img src="${this.src}" alt="${this.alt}">
-                <h3 class="menu__item-subtitle">${this.title}</h3>
-                <div class="menu__item-descr">${this.desc}</div>
-                <div class="menu__item-divider"></div>
-                <div class="menu__item-price">
-                    <div class="menu__item-cost">Цена:</div>
-                    <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
-                </div>
-            `;
+    //     draw(){
+    //         const div = document.createElement('div');
+    //         if(this.classes.length === 0){
+    //             this.classes = 'menu__item';
+    //             div.classList.add(this.classes);
+    //         } else{
+    //             this.classes.forEach(className => div.classList.add(className));
+    //         }
+            
 
-            this.parent.append(div);
-        }
-    }
+    //         div.innerHTML = `
+    //             <img src="${this.src}" alt="${this.alt}">
+    //             <h3 class="menu__item-subtitle">${this.title}</h3>
+    //             <div class="menu__item-descr">${this.desc}</div>
+    //             <div class="menu__item-divider"></div>
+    //             <div class="menu__item-price">
+    //                 <div class="menu__item-cost">Цена:</div>
+    //                 <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
+    //             </div>
+    //         `;
+
+    //         this.parent.append(div);
+    //     }
+    // }
 
     // const card1 = new MenuCards(
     //     'img/tabs/vegy.jpg',
@@ -253,7 +261,10 @@ window.addEventListener('DOMContentLoaded', () => {
     //     'Меню "Фитнес"',
     //     'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
     //     9,
-    //     '.menu .container'
+    //     '.menu .container',
+    //     'menu__item',
+    //     'box1',
+    //     'box2'
     // ).draw();
 
     // new MenuCards(
@@ -262,7 +273,9 @@ window.addEventListener('DOMContentLoaded', () => {
     //     'Меню "Постное"',
     //     'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
     //     14,
-    //     '.menu .container'
+    //     '.menu .container',
+    //     'menu__item',
+    //     'ttx'
     // ).draw();
 
     // new MenuCards(
@@ -274,6 +287,47 @@ window.addEventListener('DOMContentLoaded', () => {
     //     '.menu .container'
     // ).draw();
 
+
+
+
+    // Вариант получения карточек с помощью класса MenuCards и объекта cardsData
+    class MenuCards {
+        constructor(src, alt, title, desc, price, parent, ...classes){
+            this.src = src;
+            this.alt = alt;
+            this.title = title;
+            this.desc = desc;
+            this.price = price;
+            this.parent = document.querySelector(parent);
+            this.classes = classes.length ? classes : ['menu__item'];
+            this.transfer = 40.5;
+            this.convertToUah();
+        }
+    
+        convertToUah(){
+            this.price = Math.floor(this.price * this.transfer);
+        }
+    
+        draw(){
+            const div = document.createElement('div');
+            
+            this.classes.forEach(className => div.classList.add(className));
+    
+            div.innerHTML = `
+                <img src="${this.src}" alt="${this.alt}">
+                <h3 class="menu__item-subtitle">${this.title}</h3>
+                <div class="menu__item-descr">${this.desc}</div>
+                <div class="menu__item-divider"></div>
+                <div class="menu__item-price">
+                    <div class="menu__item-cost">Цена:</div>
+                    <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
+                </div>
+            `;
+    
+            this.parent.append(div);
+        }
+    }
+    
     const cardsData = [
         {
             src: 'img/tabs/vegy.jpg',
@@ -281,7 +335,8 @@ window.addEventListener('DOMContentLoaded', () => {
             title: 'Меню "Фитнес"',
             desc: 'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
             price: 9,
-            parentSelector: '.menu__field .container'
+            parentSelector: '.menu__field .container',
+            classes: 'menu__item obx'
         },
         {
             src: 'img/tabs/elite.jpg',
@@ -289,7 +344,8 @@ window.addEventListener('DOMContentLoaded', () => {
             title: 'Меню “Премиум”',
             desc: 'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
             price: 14,
-            parentSelector: '.menu__field .container'
+            parentSelector: '.menu__field .container',
+            classes: 'menu__item two'
         },
         {
             src: 'img/tabs/post.jpg',
@@ -297,13 +353,19 @@ window.addEventListener('DOMContentLoaded', () => {
             title: 'Меню "Постное"',
             desc: 'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
             price: 21,
-            parentSelector: '.menu__field .container'
+            parentSelector: '.menu__field .container',
+            classes: 'menu__item'
         }
     ];
-
-    cardsData.forEach(({src, alt, title, desc, price, parentSelector}) =>{
-        new MenuCards(src, alt, title, desc, price, parentSelector).draw();
+    
+    cardsData.forEach(({src, alt, title, desc, price, parentSelector, classes}) => {
+        new MenuCards(src, alt, title, desc, price, parentSelector, ...(classes ? classes.split(' ') : [])).draw();
     });
+    
+
+
+
+
 
     // Функция для получения данных с бэкенда
     // async function getCardsData(url) {
